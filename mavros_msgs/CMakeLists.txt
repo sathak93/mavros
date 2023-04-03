@@ -68,6 +68,8 @@ set(msg_files
   msg/Mavlink.msg
   msg/MountControl.msg
   msg/NavControllerOutput.msg
+  msg/ObstacleDistance3D.msg
+  msg/ObstacleDistance3DList.msg
   msg/OnboardComputerStatus.msg
   msg/OpticalFlowRad.msg
   msg/OverrideRCIn.msg
