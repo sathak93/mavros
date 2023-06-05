@@ -134,7 +134,7 @@ public:
     // home position subscriber to set "map" origin
     // TODO(vooon): use UAS
     hp_sub = node->create_subscription<mavros_msgs::msg::HomePosition>(
-      "home_position/home",
+      "/mavros/home_position/home",
       sensor_qos,
       std::bind(&GlobalPositionPlugin::home_position_cb, this, _1));
 
