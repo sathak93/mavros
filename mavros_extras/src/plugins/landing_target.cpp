@@ -462,9 +462,14 @@ private:
     tf2::fromMsg(req->pose, tr);
 
     /** @todo these transforms should be applied according to the MAV_FRAME */
+    if (req->frame == MAV_FRAME::BODY_FRD){
+      auto position = Eigen::Vector3d(tr.translation());
+      auto orientation = Eigen::Quaterniond(tr.rotation());
+    } else {
     auto position = ftf::transform_frame_enu_ned(Eigen::Vector3d(tr.translation()));
     auto orientation = ftf::transform_orientation_enu_ned(
       ftf::transform_orientation_baselink_aircraft(Eigen::Quaterniond(tr.rotation())));
+    }
 
     landing_target(
       rclcpp::Time(req->header.stamp).nanoseconds() / 1000,

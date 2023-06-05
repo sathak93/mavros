@@ -117,7 +117,7 @@ private:
         if (mav_frame == MAV_FRAME::BODY_NED || mav_frame == MAV_FRAME::BODY_OFFSET_NED) {
           return ftf::transform_frame_baselink_aircraft(Eigen::Vector3d(0.0, 0.0, yaw_rate));
         } else {
-          return ftf::transform_frame_ned_enu(Eigen::Vector3d(0.0, 0.0, yaw_rate));
+          return ftf::transform_frame_enu_ned(Eigen::Vector3d(0.0, 0.0, yaw_rate));
         }
       } ();
 

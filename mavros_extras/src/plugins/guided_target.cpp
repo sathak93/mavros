@@ -64,11 +64,11 @@ public:
     // Publish targets received from FCU
     setpointg_pub = node->create_publisher<geometry_msgs::msg::PoseStamped>(
       "/move_base_simple/goal", 10);
-
+    auto sensor_qos = rclcpp::SensorDataQoS();
 
     // Subscriber for global origin (aka map origin).
     gp_origin_sub = node->create_subscription<geographic_msgs::msg::GeoPointStamped>(
-      "global_position/gp_origin", 10, std::bind(&GuidedTargetPlugin::gp_origin_cb, this, _1));
+      "/mavros/global_position/gp_origin", sensor_qos, std::bind(&GuidedTargetPlugin::gp_origin_cb, this, _1));
   }
 
   Subscriptions get_subscriptions() override
