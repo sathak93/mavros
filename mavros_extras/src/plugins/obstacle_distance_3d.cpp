@@ -80,14 +80,11 @@ namespace mavros
           obstacle.sensor_type = utils::enum_value(MAV_DISTANCE_SENSOR::LASER); //!< defaults is laser
           obstacle.min_distance = it->min_distance;                            //!< [meters]
           obstacle.max_distance = it->max_distance;                            //!< [meters]
-          obstacle.frame = 0;                                                   // utils::enum_value(frame);
+          obstacle.frame =12;                                                   // utils::enum_value(frame);
           obstacle.obstacle_id = UINT16_MAX;
           obstacle.x = it->position.x; //!< [degrees]
           obstacle.y = it->position.y;
-          obstacle.z = it->position.z;
-          RCLCPP_INFO_STREAM(get_logger(),
-             "sending obstacle 3d" << obstacle.to_yaml()<<std::endl);
-             
+          obstacle.z = it->position.z;           
           uas->send_message(obstacle);
         }
       }
