@@ -129,7 +129,7 @@
 # setpoint_velocity
 /mavros/**/setpoint_velocity:
   ros__parameters:
-    mav_frame: LOCAL_NED
+    mav_frame: BODY_NED  # body ned
 
 # vfr_hud
 # None
@@ -156,16 +156,9 @@
 /mavros/**/distance_sensor:
   ros__parameters:
     config: |
-      rangefinder_pub:
-        id: 0
-        frame_id: "lidar"
-        #orientation: PITCH_270 # sended by FCU
-        field_of_view: 0.0  # XXX TODO
-        send_tf: false
-        sensor_position: {x:  0.0, y:  0.0, z:  -0.1}
-      rangefinder_sub:
+      lt_distance:
         subscriber: true
-        id: 1
+        id: 63
         orientation: PITCH_270  # only that orientation are supported by APM 3.4+
 
 # image_pub
@@ -204,7 +197,7 @@
 # landing_target
 /mavros/**/landing_target:
   ros__parameters:
-    listen_lt: false
+    listen_lt: true
     mav_frame: "LOCAL_NED"
     land_target_type: "VISION_FIDUCIAL"
     image.width: 640            # [pixels]
