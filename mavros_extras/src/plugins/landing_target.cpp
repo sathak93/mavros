@@ -460,9 +460,11 @@ private:
   {
     Eigen::Affine3d tr;
     tf2::fromMsg(req->pose, tr);
+    Eigen::Vector3d position {};         //!< Position vector. WRT frame_id
+    Eigen::Quaterniond orientation {};   //!< Attitude quaternion. WRT frame_id
 
     /** @todo these transforms should be applied according to the MAV_FRAME */
-    if (req->frame == MAV_FRAME::BODY_FRD){
+    if (req->frame == utils::enum_value(MAV_FRAME::BODY_FRD)){
       auto position = Eigen::Vector3d(tr.translation());
       auto orientation = Eigen::Quaterniond(tr.rotation());
     } else {
