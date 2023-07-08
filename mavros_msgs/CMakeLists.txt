@@ -72,6 +72,7 @@ set(msg_files
   msg/ObstacleDistance3DList.msg
   msg/OnboardComputerStatus.msg
   msg/OpticalFlowRad.msg
+  msg/OpticalFlow.msg
   msg/OverrideRCIn.msg
   msg/Param.msg
   msg/ParamEvent.msg
