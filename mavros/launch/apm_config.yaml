@@ -78,7 +78,7 @@
 /mavros/**/local_position:
   ros__parameters:
     frame_id: "map"
-    tf.send: true  
+    tf.send: false
     tf.frame_id: "map"
     tf.child_frame_id: "base_link"
     tf.send_fcu: false
