@@ -170,7 +170,14 @@ private:
     /* convert ECEF target to ENU */
     const Eigen::Vector3d local_ecef = pos_target_ecef - ecef_origin;
     pose.pose.position = tf2::toMsg(ftf::transform_frame_ecef_enu(local_ecef, map_origin));
-    pose.pose.position.z = 0.0;                 // force z-axis to zero
+
+
+    auto target_lla = geographic_msgs::msg::GeoPoint();
+    target_lla.latitude = position_target.lat_int / 1E7 ;
+    target_lla.longitude = position_target.lon_int / 1E7 ;
+    target_lla.altitude = position_target.alt / 1E3 ;
+
+    pose.pose.position.z = position_target.alt + uas->data.geoid_to_ellipsoid_height(target_lla) - map_origin.z();
 
     /* publish target */
     if (pose.pose.position.x != prev.x() || pose.pose.position.y != prev.y()) {
